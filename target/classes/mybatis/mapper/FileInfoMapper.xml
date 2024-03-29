@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- photoMapper.xml -->
+
+<mapper namespace="com.study.erum.mapper.FileInfoMapper">
+
+   <insert id="insertFileInfo" parameterType="com.study.erum.model.FileInfo">
+    INSERT INTO file_info (file_name, file_path, created_at)
+    VALUES (#{fileName}, #{filePath}, NOW())
+	</insert>
+    <!-- 다른 쿼리들을 여기에 추가 -->
+    <select id="getAllImageUrls" resultType="string" >
+        SELECT file_path
+        FROM file_info;
+    </select>
+    
+    <select id="getAllImageByname" resultType="string">
+	SELECT file_path
+	FROM about_trip
+	INNER JOIN file_info ON about_trip.title = '에버랜드' AND file_info.file_name
+	LIKE '에버랜드%';
+    </select>
+    
+    <delete id="deleteImageByUrl" parameterType="string">
+        DELETE FROM file_info
+        WHERE file_path = #{imageUrl}
+    </delete>
+</mapper>

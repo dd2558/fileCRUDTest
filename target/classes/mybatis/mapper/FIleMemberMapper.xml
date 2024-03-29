@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- photoMapper.xml -->
+
+<mapper namespace="com.study.erum.mapper.FileMemberMapper">
+	<insert id="insertMemberInfo" parameterType="com.study.erum.model.FileMember">
+		insert into fileMember (id,name,content)
+		values(#{id},#{name},#{content})
+	</insert>
+	
+	<select id="">
+		SELECT fm.id, fm.name, fm.content, fi.file_name, fi.file_path,
+		fi.created_at
+		FROM file_member fm
+		JOIN file_info fi ON fm.file_info_id = fi.id;
+	</select>
+	
+</mapper>
